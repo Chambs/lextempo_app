@@ -95,9 +95,10 @@ dependencies {
 
 kapt {
     correctErrorTypes = true
-    // (Opcional) Para sumir com o aviso do Room de export de schema:
-    // arguments {
-    //     arg("room.schemaLocation", "$projectDir/schemas")
-    //     arg("room.incremental", "true")
-    // }
+}
+
+ksp {
+    arg("room.schemaLocation", "$projectDir/schemas")
+    arg("room.incremental", "true")
+    arg("room.generateKotlin", "true")
 }
