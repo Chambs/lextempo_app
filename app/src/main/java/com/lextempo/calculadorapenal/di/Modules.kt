@@ -19,7 +19,9 @@ object Modules {
 
     @Provides @Singleton
     fun db(@ApplicationContext ctx: Context): AppDatabase =
-        Room.databaseBuilder(ctx, AppDatabase::class.java, "app.db").build()
+        Room.databaseBuilder(ctx, AppDatabase::class.java, "app.db")
+            .fallbackToDestructiveMigration()
+            .build()
 
     @Provides
     fun scenarioDao(db: AppDatabase): ScenarioDao = db.scenarioDao()
