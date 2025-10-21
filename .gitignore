@@ -13,3 +13,6 @@
 .externalNativeBuild
 .cxx
 local.properties
+/app/schemas/
+!/app/schemas/
+!/app/schemas/.gitkeep
