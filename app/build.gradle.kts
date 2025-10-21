@@ -5,6 +5,7 @@ plugins {
     id("com.google.dagger.hilt.android")
     // 👇 habilita o Compose Compiler plugin
     id("org.jetbrains.kotlin.plugin.compose")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -29,7 +30,12 @@ android {
                 "proguard-rules.pro"
             )
         }
-        debug { isMinifyEnabled = false }
+        debug {
+            isMinifyEnabled = false
+            // Usa um applicationId exclusivo para desenvolvimento e evita conflito no dispositivo
+            applicationId = "com.lextempo.calculadorapenal.dev"
+            versionNameSuffix = "-dev"
+        }
     }
 
     compileOptions {
@@ -74,8 +80,8 @@ dependencies {
 
     // Room
     implementation("androidx.room:room-runtime:2.6.1")
-    kapt("androidx.room:room-compiler:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
+    ksp("androidx.room:room-compiler:2.6.1")
 
     // Outros úteis
     implementation("androidx.datastore:datastore-preferences:1.1.1")

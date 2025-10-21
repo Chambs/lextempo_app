@@ -3,6 +3,8 @@ package com.lextempo.calculadorapenal.repo
 import com.lextempo.calculadorapenal.data.local.dao.ScenarioDao
 import com.lextempo.calculadorapenal.data.local.entity.ScenarioEntity
 import javax.inject.Inject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 interface ScenariosRepository {
     suspend fun saveScenario(title: String, payloadJson: String): Long
@@ -14,9 +16,12 @@ class ScenariosRepositoryImpl @Inject constructor(
     private val dao: ScenarioDao
 ) : ScenariosRepository {
     override suspend fun saveScenario(title: String, payloadJson: String): Long =
-        dao.insert(ScenarioEntity(title = title, payloadJson = payloadJson))
+        withContext(Dispatchers.IO) {
+            dao.insert(ScenarioEntity(title = title, payloadJson = payloadJson))
+        }
 
-    override suspend fun listScenarios(): List<ScenarioEntity> = dao.list()
+    override suspend fun listScenarios(): List<ScenarioEntity> =
+        withContext(Dispatchers.IO) { dao.list() }
 
-    override suspend fun deleteScenario(id: Long) = dao.delete(id)
+    override suspend fun deleteScenario(id: Long) = withContext(Dispatchers.IO) { dao.delete(id) }
 }
