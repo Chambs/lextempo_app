@@ -32,7 +32,6 @@ android {
         }
         debug {
             isMinifyEnabled = false
-            // Garante que a build de debug não conflite com a versão publicada
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-debug"
         }
