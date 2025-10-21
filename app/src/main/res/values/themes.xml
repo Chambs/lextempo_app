@@ -1,0 +1,6 @@
+<resources>
+    <!-- Use um parent garantido do Material Components -->
+    <style name="Theme.CalculadoraPenal" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+</resources>
