@@ -32,9 +32,8 @@ android {
         }
         debug {
             isMinifyEnabled = false
-            // Usa um applicationId exclusivo para desenvolvimento e evita conflito no dispositivo
-            applicationIdSuffix = ".dev"
-            versionNameSuffix = "-dev"
+            applicationIdSuffix = ".debug"
+            versionNameSuffix = "-debug"
         }
     }
 
