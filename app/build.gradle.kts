@@ -12,8 +12,17 @@ android {
     namespace = "com.lextempo.calculadorapenal"
     compileSdk = 35
 
+    val baseApplicationId = "com.lextempo.calculadorapenal"
+    // Gera um sufixo determinístico para o appId de debug baseado no caminho do projeto.
+    // Isso evita colisões com builds antigos (ex.: "celobackendareal.dev") quando
+    // Android Studio tenta instalar múltiplos APKs com o mesmo applicationId.
+    val debugApplicationIdSuffix = run {
+        val projectHash = Integer.toHexString(rootProject.projectDir.absolutePath.hashCode())
+        ".dev$projectHash"
+    }
+
     defaultConfig {
-        applicationId = "com.lextempo.calculadorapenal"
+        applicationId = baseApplicationId
         minSdk = 24
         targetSdk = 35
         versionCode = 1
@@ -33,7 +42,7 @@ android {
         debug {
             isMinifyEnabled = false
             // Usa um applicationId exclusivo para desenvolvimento e evita conflito no dispositivo
-            applicationIdSuffix = ".dev"
+            applicationIdSuffix = debugApplicationIdSuffix
             versionNameSuffix = "-dev"
         }
     }
